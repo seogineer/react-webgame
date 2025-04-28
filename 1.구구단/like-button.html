@@ -13,25 +13,15 @@
   <script type="text/babel">
     'use strict';
 
-    const e = React.createElement;
+    function LikeButton() { // 함수 컴포넌트
+      const [liked, setLiked] = React.useState(false);  // 구조분해
 
-    class LikeButton extends React.Component {
-      render() {
-        if (this.state.liked) {
-          return 'You liked this.';
-        }
-
-        // return e('button', { onClick: () => this.setState({ liked: true }) }, 'Like');
-        return (
-          <button onClick={() => {
-            // this.state.liked = true; 
-            // setState를 사용해서 객체의 값을 바꾸지 말고 복사해야 한다.(불변성) 
-            this.setState({ liked: true });
-          }}>
-            Like
-          </button>
-        );
+      if (liked) {
+        return 'You liked this.';
       }
+      return (
+        <button onClick={() => { setLiked(true); }}>Like</button>
+      );
     }
   </script>
   <script type="text/babel">
