@@ -23,7 +23,7 @@
       const onSubmitForm = (e) => {
         e.preventDefault();
         if (parseInt(value) === first * second) {
-          setResult('정답');
+          setResult('정답: ' + value);
           setFirst(Math.ceil(Math.random() * 9));
           setSecond(Math.ceil(Math.random() * 9));
           setValue('');
@@ -34,6 +34,13 @@
           inputEl.current.focus();
         }
       };
+
+      const onChangeInput = (e) => {
+        setValue(e.target.value);
+      };
+
+      // class로 작성한 코드와 달리 useState를 실행할 때마다 GuGuDan() 함수 전체가 실행된다.
+      // html 태그 속성으로 class -> className, for -> htmlFor로 사용해야 한다.
       return (
         <React.Fragment>
           <div>{first} 곱하기 {second}는?</div>
@@ -42,9 +49,9 @@
               ref={inputEl}
               type="number"
               value={value}
-              onChange={(e) => setValue(e.target.value)}
+              onChange={onChangeInput}
             />
-            <button>입력!</button>
+            <button id="button" className="buttonClass" htmlFor="buttonFor">입력!</button>
           </form>
           <div id="result">{result}</div>
         </React.Fragment>
