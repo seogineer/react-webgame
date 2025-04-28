@@ -16,11 +16,6 @@
     const e = React.createElement;
 
     class LikeButton extends React.Component {
-      constructor(props) {
-        super(props);
-        this.state = { liked: false };
-      }
-
       render() {
         if (this.state.liked) {
           return 'You liked this.';
@@ -28,7 +23,11 @@
 
         // return e('button', { onClick: () => this.setState({ liked: true }) }, 'Like');
         return (
-          <button onClick={() => this.setState({ liked: true })}>
+          <button onClick={() => {
+            // this.state.liked = true; 
+            // setState를 사용해서 객체의 값을 바꾸지 말고 복사해야 한다.(불변성) 
+            this.setState({ liked: true });
+          }}>
             Like
           </button>
         );
