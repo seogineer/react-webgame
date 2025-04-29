@@ -17,11 +17,21 @@ module.exports = {
       test: /\.jsx?/,
       loader: 'babel-loader',
       options: {
-        presets: ['@babel/preset-env', '@babel/preset-react'],
+        presets: [
+          ['@babel/preset-env', {
+            targets: {
+              browsers: ['> 5% in KR', 'last 2 chrome versions'],
+            },
+            debug: true,
+          }],
+          '@babel/preset-react'
+        ],
+        plugins: [],
       },
     }],
   },  // jsx 파일에 babel loader 규칙을 적용
 
+  plugins: [],
   output: {
     path: path.join(__dirname, 'dist'), // /Users/seogineer/Documents/workspace/react-webgame/2.끝말잇기/dist
     filename: 'app.js',
