@@ -1,4 +1,5 @@
 const path = require('path');
+const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
   name: 'wordrelay-setting',
@@ -26,14 +27,24 @@ module.exports = {
           }],
           '@babel/preset-react'
         ],
-        plugins: [],
+        plugins: [
+          'react-refresh/babel'
+        ],
       },
     }],
   },  // jsx 파일에 babel loader 규칙을 적용
 
-  plugins: [],
+  plugins: [
+    new RefreshWebpackPlugin()
+  ],
   output: {
     path: path.join(__dirname, 'dist'), // /Users/seogineer/Documents/workspace/react-webgame/2.끝말잇기/dist
     filename: 'app.js',
+    publicPath: '/dist/',
   },  // 출력
+  devServer: {
+    devMiddleware: { publicPath: '/dist' },
+    static: { directory: path.resolve(__dirname) },
+    hot: true
+  }
 };
