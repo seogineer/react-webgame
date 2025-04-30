@@ -22,6 +22,7 @@ class NumberBaseball extends Component {
 
   };
 
+  // key에 index를 사용하면 성능 최적화에 좋지 않음.
   render() {
     return (
       <>
@@ -31,9 +32,9 @@ class NumberBaseball extends Component {
         </form>
         <div>시도: {this.state.tries.length}</div>
         <ul>
-          {['사과', '바나나', '포도', '귤', '감', '배', '밤'].map((v) => {
+          {['사과', '바나나', '포도', '귤', '감', '배', '밤'].map((v, i) => {
             return (
-              <li>{v}</li>
+              <li key={v}>{v} - {i}</li>
             );
           })}
         </ul>
