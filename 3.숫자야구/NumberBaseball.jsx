@@ -1,6 +1,7 @@
 // const React = require('react');
 // const { Component } = React;
 import React, { Component } from 'react';
+import Try from './Try.jsx';
 
 function getNumbers() {
 
@@ -34,7 +35,7 @@ class NumberBaseball extends Component {
         <ul>
           {['사과', '바나나', '포도', '귤', '감', '배', '밤'].map((v, i) => {
             return (
-              <li key={v}>{v} - {i}</li>
+              <Try value={v} index={i} />
             );
           })}
         </ul>

@@ -38,7 +38,7 @@ module.exports = {
     new RefreshWebpackPlugin()
   ],
   output: {
-    path: path.join(__dirname, 'dist'), // /Users/seogineer/Documents/workspace/react-webgame/2.끝말잇기/dist
+    path: path.join(__dirname, 'dist'),
     filename: '[name].js',
     publicPath: '/dist/',
   },  // 출력
