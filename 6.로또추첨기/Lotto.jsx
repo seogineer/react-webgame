@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import Ball from './Ball';
 
 function getWinNumbers() {
+  console.log('getWinNumbers');
   const candidate = Array(45).fill().map((v, i) => i + 1);
   const shuffle = [];
   while (candidate.length > 0) {
@@ -12,8 +13,16 @@ function getWinNumbers() {
   return [...winNumbers, bonusNumber];
 }
 
+// useMemo: 복잡한 함수 결괏값을 기억
+// useRef: 일반값을 기억
+
+// useMemo와 useCallback의 차이
+// useMemo는 리턴값을 기억
+// useCallback은 함수를 기억, 함수 생성에 비용이 큰 경우 사용
+
 const Lotto = () => {
-  const [winNumbers, setWinNumbers] = useState(getWinNumbers());
+  const lottoNumbers = useMemo(() => getWinNumbers(), []);
+  const [winNumbers, setWinNumbers] = useState(lottoNumbers);
   const [winBalls, setWinBalls] = useState([]);
   const [bonus, setBonus] = useState(null);
   const [redo, setRedo] = useState(false);
@@ -37,14 +46,14 @@ const Lotto = () => {
     }
   }, [timeouts.current]); // 배열에 요소가 있으면 componentDidMount랑 componentDidUpdate 둘 다 수행
 
-  const onClickRedo = () => {
+  const onClickRedo = useCallback(() => {
     console.log('onClickRedo');
     setWinNumbers(getWinNumbers());
     setWinBalls([]);
     setBonus(null);
     setRedo(false);
     timeouts.current = [];
-  }
+  }, [winNumbers]); // 자식 컴포넌트에 함수를 넘겨줄 때 useCallback을 사용하여 불필요한 함수 변화로 인한 리로딩을 막는다.
 
   return (
     <>
