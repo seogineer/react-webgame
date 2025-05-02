@@ -28,6 +28,21 @@ const Lotto = () => {
   const [redo, setRedo] = useState(false);
   const timeouts = useRef([]);
 
+  // componentDidMount만 수행하고 싶은 경우
+  // useEffect(() => {
+
+  // }, []);
+
+  // componentDidUpdate만 수행하고 싶은 경우
+  // const mounted = useRef(false);
+  // useEffect(() => {
+  //   if (!mounted.current) {
+  //     mounted.current = true;
+  //   } else {
+
+  //   }
+  // }, []);
+
   useEffect(() => {
     console.log('useEffect');
     for (let i = 0; i < winNumbers.length - 1; i++) {
