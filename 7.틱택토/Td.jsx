@@ -2,10 +2,8 @@ import React from 'react';
 
 const Td = () => {
   return (
-    <>
-      <Td>{''}</Td>
-    </>
+    <td>{''}</td>
   );
 };
 
-exports default Td;
+export default Td;
